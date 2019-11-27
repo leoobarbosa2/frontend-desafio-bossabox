@@ -22,7 +22,7 @@ export const Options = styled.div`
 `;
 
 export const ToolList = styled.ul`
-  margin-top: 20px;
+  margin: 20px 0;
   list-style: none;
 
   li {
@@ -100,10 +100,24 @@ export const Modal = styled.div`
     display: flex;
     flex-direction: column;
 
+    input {
+      padding: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.7);
+    }
+
+    label {
+      margin: 20px 0;
+    }
+
     div {
       button {
+        background: #fff;
+        border: 2px solid rgba(0, 0, 0, 0.7);
+        padding: 2px;
         margin-top: 20px;
         float: right;
+
+        cursor: pointer;
       }
     }
   }

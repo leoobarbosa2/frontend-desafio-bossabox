@@ -29,7 +29,9 @@ module.exports = {
     'prettier/prettier': 'error',
     "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
     "import/prefer-default-export": "off",
-    "jsx-a11y/label-has-associated-control": 'off'
+    "jsx-a11y/label-has-associated-control": 'off',
+    "no-alert": "off",
+    "no-restricted-globals": "off"
   },
 };
 ''
