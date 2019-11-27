@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   max-width: 700px;
   margin: 0 auto;
 `;
@@ -10,12 +11,13 @@ export const Options = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  a {
+  button {
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     background: #fff;
     padding: 2px;
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 
