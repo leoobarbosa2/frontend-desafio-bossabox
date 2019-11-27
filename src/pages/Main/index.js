@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, ToolList, Options } from './styles';
-
-import ModalAdd from '../../components/ModalAdd';
+import { Form, Input } from '@rocketseat/unform';
+import { Container, ToolList, Options, ModalBody, Modal } from './styles';
 
 import api from '../../services/api';
 
@@ -12,12 +11,25 @@ export default function Main() {
 
   useEffect(() => {
     async function getTools() {
-      const response = await api.get('tools');
+      const response = await api.get('/tools');
 
       setTools(response.data);
     }
     getTools();
   }, []);
+
+  async function handleSubmit({ title, link, description, tags }) {
+    try {
+      await api.post('/tools', {
+        title,
+        link,
+        description,
+        tags,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <>
@@ -43,23 +55,27 @@ export default function Main() {
           ))}
         </ToolList>
       </Container>
-      {modal && (
-        <ModalAdd>
-          <form>
+      <ModalBody visible={modal}>
+        <Modal>
+          <button type="button" onClick={() => setModal(false)}>
+            X
+          </button>
+          <h1>+ Add new Tool</h1>
+          <Form onSubmit={handleSubmit}>
             <label htmlFor="">Tool Name</label>
-            <input type="text" />
+            <Input name="title" />
             <label htmlFor="">Tool link</label>
-            <input type="text" />
+            <Input name="link" />
             <label htmlFor="">Tool description</label>
-            <input type="text" />
+            <Input name="description" />
             <label htmlFor="">Tags</label>
-            <input type="text" />
-          </form>
-          <div>
-            <button>Add tool</button>
-          </div>
-        </ModalAdd>
-      )}
+            <Input name="tags" />
+            <div>
+              <button type="submit">Add tool</button>
+            </div>
+          </Form>
+        </Modal>
+      </ModalBody>
     </>
   );
 }

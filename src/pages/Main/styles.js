@@ -60,3 +60,51 @@ export const ToolList = styled.ul`
     }
   }
 `;
+
+export const ModalBody = styled.div`
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: ${props => (props.visible ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Modal = styled.div`
+  border: 3px solid #000;
+  position: relative;
+  background: #fff;
+  min-width: 400px;
+  padding: 30px;
+
+  > h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  > button {
+    position: absolute;
+    padding: 4px;
+    top: 0;
+    right: 0;
+    border: 0;
+    background: none;
+
+    cursor: pointer;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      button {
+        margin-top: 20px;
+        float: right;
+      }
+    }
+  }
+`;

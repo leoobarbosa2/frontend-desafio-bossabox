@@ -28,7 +28,8 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'prettier/prettier': 'error',
     "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-associated-control": 'off'
   },
 };
 ''
