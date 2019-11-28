@@ -233,3 +233,5 @@ export const Loading = styled.div`
       }
     `}
 `;
+
+export const ActionContainer = styled.div``;

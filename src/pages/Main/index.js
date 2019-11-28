@@ -19,6 +19,7 @@ import {
   ModalBody,
   Modal,
   Loading,
+  ActionContainer,
 } from './styles';
 
 import ActionConfirm from '../../components/ActionConfirm';
@@ -187,7 +188,7 @@ export default function Main() {
           ))}
         </ToolList>
       </Container>
-      <ModalBody visible={modal}>
+      <ModalBody visible={modal} onMouseDown={() => setModal(false)}>
         <Modal visibleEffect={modal}>
           <button type="button" onClick={() => setModal(false)}>
             <MdCancel size={25} color="#f00" />
@@ -224,23 +225,25 @@ export default function Main() {
         </Modal>
       </ModalBody>
       {action && (
-        <ActionConfirm>
-          <h1>
-            <MdDelete size={40} color="#00AA9E" /> Remove tool
-          </h1>
-          <p>Are you sure you want to remove this tool?</p>
-          <div>
-            <button type="button" onClick={() => setAction(false)}>
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={() => handleDeleteTool(tools[toolIndex]._id)}
-            >
-              Yes, Delete
-            </button>
-          </div>
-        </ActionConfirm>
+        <ActionContainer onMouseDown={() => setAction(false)}>
+          <ActionConfirm>
+            <h1>
+              <MdDelete size={40} color="#00AA9E" /> Remove tool
+            </h1>
+            <p>Are you sure you want to remove this tool?</p>
+            <div>
+              <button type="button" onClick={() => setAction(false)}>
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDeleteTool(tools[toolIndex]._id)}
+              >
+                Yes, Delete
+              </button>
+            </div>
+          </ActionConfirm>
+        </ActionContainer>
       )}
     </>
   );
