@@ -10,7 +10,8 @@
 <h1 align="center">Instruções</h1>
 <p align="center">
   Em caso de download do projeto você precisará baixar as dependências: <br>
-  Necessário: Yarn ou Npm instalados
+  Necessário: Yarn ou Npm instalados<br>
+  Execute um dos comandos abaixo
   
   ```
   
