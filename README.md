@@ -72,7 +72,6 @@ Utilizado para exibir as notificações para o cliente baseado nas respostas rec
  <img src="https://user-images.githubusercontent.com/54908803/69832941-a9c08f80-120f-11ea-843d-f8f179e3a7e1.png" />
 </p>
 
-<hr>
 
 <hr>
 <p align="center">YUP</p>
@@ -83,7 +82,7 @@ Utilizado para exibir as notificações para o cliente baseado nas respostas rec
 <hr>
 <p align="center">Styled-Components</p>
 <p align="center">
-  Utilizado para criação de alguns componentes utilizado na aplicação, de forma que possamos definir as estilizações padrões com CSS junto a criação dos mesmos
+  Utilizado para criação de alguns componentes utilizados na aplicação, de forma que possamos definir as estilizações padrões com CSS junto a criação dos mesmos
 </p>
 
 <p align="center">
