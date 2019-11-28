@@ -13,26 +13,47 @@ export const Container = styled.div`
 `;
 
 export const Actions = styled.div`
+  position: absolute;
+  top: 290px;
   background: #fff;
   padding: 20px;
+  border: none;
+  border-radius: 4px;
 
   h1 {
+    svg {
+      margin-right: 30px;
+    }
+
+    display: flex;
+    align-items: center;
     font-size: 25px;
     margin-bottom: 20px;
   }
 
   p {
     margin-bottom: 20px;
+
+    span {
+      font-weight: bold;
+    }
   }
 
   div {
     display: flex;
     justify-content: space-between;
+    padding: 10px 20px;
 
     button {
-      background: none;
-      border: 2px solid rgba(0, 0, 0, 0.7);
-      padding: 4px;
+      color: #fff;
+      margin-top: 20px;
+      background: #00aa9e;
+      border: none;
+      padding: 10px;
+
+      &:nth-child(1) {
+        background: #f44;
+      }
 
       cursor: pointer;
     }

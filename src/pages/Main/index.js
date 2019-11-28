@@ -1,17 +1,44 @@
 import React, { useState, useEffect } from 'react';
+import { FaSpinner, FaHashtag } from 'react-icons/fa';
+import {
+  MdCancel,
+  MdLibraryAdd,
+  MdInsertLink,
+  MdDescription,
+  MdAssignment,
+  MdDelete,
+} from 'react-icons/md';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 import { Form, Input } from '@rocketseat/unform';
-import { Container, ToolList, Options, ModalBody, Modal } from './styles';
+import {
+  Container,
+  ToolList,
+  Options,
+  ModalBody,
+  Modal,
+  Loading,
+} from './styles';
 
 import ActionConfirm from '../../components/ActionConfirm';
 
 import api from '../../services/api';
 
+const schema = Yup.object().shape({
+  title: Yup.string('Insert Tool title').required('Tool title is required'),
+  link: Yup.string('Link from website tool').required('Link is required'),
+  description: Yup.string('Min 10 characters').required(
+    'Description is required'
+  ),
+  tags: Yup.string(),
+});
+
 export default function Main() {
   const [tools, setTools] = useState([]);
   const [modal, setModal] = useState(false);
   const [action, setAction] = useState(false);
-  const [targetTool, setTargetTool] = useState('');
+  const [toolIndex, settoolIndex] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -42,25 +69,31 @@ export default function Main() {
 
       const newToolState = await api.get('tools');
 
-      setTools(newToolState.data);
+      const data = newToolState.data.map(tool => ({
+        ...tool,
+        tagsFormatted: tool.tags.map(tag => `#`.concat(tag).concat(' ')),
+      }));
 
+      setTools(data);
+      toast.success('New tool registered');
       setModal(false);
     } catch (err) {
-      console.log(err);
+      toast.error(err.response.data.error);
     }
   }
 
   async function handleDeleteTool(id) {
     try {
       await api.delete(`/tools/${id}`);
+      toast.success('Tool has been deleted');
 
       const updatedTools = tools.filter(tool => tool._id !== id);
 
       setTools(updatedTools);
       setAction(false);
-      setTargetTool('');
+      settoolIndex(null);
     } catch (err) {
-      console.log(err);
+      toast.error('Error at delete tool');
     }
   }
 
@@ -68,7 +101,9 @@ export default function Main() {
     const search = e.target.value;
     setInputValue(search);
 
-    if (search.lenght === 0) {
+    const searchByTagInput = document.getElementById('tag');
+
+    if (searchByTagInput.checked) {
       const searchTools = await api.get(`/tools?tag=${search}`);
 
       const data = searchTools.data.map(tool => ({
@@ -79,33 +114,57 @@ export default function Main() {
       setTools(data);
     }
 
-    const searchTools = await api.get(`/tools?tag=${search}`);
+    if (!searchByTagInput.checked) {
+      const searchTools = await api.get(`/tools`);
 
-    const data = searchTools.data.map(tool => ({
-      ...tool,
-      tagsFormatted: tool.tags.map(tag => `#`.concat(tag).concat(' ')),
-    }));
+      const data = searchTools.data.filter(tool => tool.title === search);
 
-    setTools(data);
+      const FormattedTools = data.map(tool => ({
+        ...tool,
+        tagsFormatted: tool.tags.map(tag => `#`.concat(tag).concat(' ')),
+      }));
+
+      setTools(FormattedTools);
+
+      if (search === '') {
+        const DefaultTools = searchTools.data.map(tool => ({
+          ...tool,
+          tagsFormatted: tool.tags.map(tag => `#`.concat(tag).concat(' ')),
+        }));
+        setTools(DefaultTools);
+      }
+    }
   }
 
   return (
     <>
       <Container>
         <Options>
-          <input
-            value={inputValue}
-            onChange={handleSearch}
-            placeholder="Search by tag"
-            type="search"
-          />
-          <button onClick={() => setModal(true)} type="button">
-            + Add
-          </button>
+          <div>
+            <div>
+              <input
+                value={inputValue}
+                onChange={handleSearch}
+                placeholder="Search"
+                type="search"
+              />
+              <input id="tag" type="checkbox" />
+              <p>search in tags only</p>
+            </div>
+            <button onClick={() => setModal(true)} type="button">
+              Add
+            </button>
+          </div>
         </Options>
         <ToolList>
-          {loading && <div>Loading ...</div>}
-          {tools.map(tool => (
+          {loading && (
+            <Loading loading={String(loading)}>
+              <span>
+                <FaSpinner size={40} color="#000" />
+              </span>
+            </Loading>
+          )}
+          {tools.map((tool, index) => (
             <li key={tool._id}>
               <div>
                 <a href={tool.link}>{tool.title}</a>
@@ -117,10 +176,11 @@ export default function Main() {
                   type="button"
                   onClick={() => {
                     setAction(true);
-                    setTargetTool(tool._id);
+                    settoolIndex(index);
                   }}
                 >
-                  Excluir
+                  <MdDelete size={20} color="#00AA9E" />
+                  Remove
                 </button>
               </div>
             </li>
@@ -128,20 +188,35 @@ export default function Main() {
         </ToolList>
       </Container>
       <ModalBody visible={modal}>
-        <Modal>
+        <Modal visibleEffect={modal}>
           <button type="button" onClick={() => setModal(false)}>
-            X
+            <MdCancel size={25} color="#f00" />
           </button>
-          <h1>+ Add new Tool</h1>
-          <Form onSubmit={handleSubmit}>
-            <label htmlFor="">Tool Name</label>
+          <h1>
+            <MdLibraryAdd size={20} color="#000" /> Add new Tool
+          </h1>
+          <Form schema={schema} onSubmit={handleSubmit}>
+            <label htmlFor="">
+              <MdAssignment size={20} color="#000" />
+              Tool Name *
+            </label>
             <Input name="title" placeholder="Tool Title" />
-            <label htmlFor="">Tool link</label>
-            <Input name="link" placeholder="Tool link page" />
-            <label htmlFor="">Tool description</label>
-            <Input name="description" placeholder="Tool description: min 10 " />
-            <label htmlFor="">Tags</label>
-            <Input name="tags" placeholder="Tool tags" />
+            <label htmlFor="">
+              <MdInsertLink size={20} color="#000" /> Tool link *
+            </label>
+            <Input name="link" placeholder="Webpage link" />
+            <label htmlFor="">
+              <MdDescription size={20} color="#000" /> Tool description *
+            </label>
+            <Input name="description" placeholder="10 characters minimum" />
+            <label htmlFor="">
+              <FaHashtag size={15} color="#000" />
+              Tags
+            </label>
+            <Input
+              name="tags"
+              placeholder="Separated by spaces: node express ..."
+            />
             <div>
               <button type="submit">Add tool</button>
             </div>
@@ -150,13 +225,18 @@ export default function Main() {
       </ModalBody>
       {action && (
         <ActionConfirm>
-          <h1> X Remove tool</h1>
+          <h1>
+            <MdDelete size={40} color="#00AA9E" /> Remove tool
+          </h1>
           <p>Are you sure you want to remove this tool?</p>
           <div>
             <button type="button" onClick={() => setAction(false)}>
               Cancel
             </button>
-            <button type="button" onClick={() => handleDeleteTool(targetTool)}>
+            <button
+              type="button"
+              onClick={() => handleDeleteTool(tools[toolIndex]._id)}
+            >
               Yes, Delete
             </button>
           </div>
