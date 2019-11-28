@@ -1,68 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">Desafio Front BossaBox | 
+"Very Useful Tools to Remember"
+</h1>
 
-## Available Scripts
+<p align="center">https://toolstorememberfront.herokuapp.com/emberfront.herokuapp.com/</p>
 
-In the project directory, you can run:
+<p align="center">O desafio de Frontend proposto pela BossaBox(https://bossabox.com/), foi de realizar a construção da página web da aplicação Very Useful Tools to Remember utilizando a própria API criada no desafio backend.
+</p>
 
-### `yarn start`
+<h1 align="center">Instruções</h1>
+<p align="center">
+  Em caso de download do projeto você precisará baixar as dependências: <br>
+  Necessário: Yarn ou Npm instalados
+  
+  ```
+  
+  npm install
+  yarn
+  
+  ```
+</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2 align="center"> Ferramentas </h2>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<p align="center">
+<img height="300" src="https://user-images.githubusercontent.com/54908803/69833039-50a52b80-1210-11ea-83c5-9927bed70d4d.png"/>
+</>
 
-### `yarn test`
+<p align="center">
+  No desenvolvimento da aplicação foi utilizado o Framework React do Facebook<br>
+  Utilização de conceitos como:<br>
+    - Hooks [UseState, UseEffect]<br>
+   - Componentização<br>
+   - Roteamento<br>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</p>
 
-### `yarn build`
+<hr>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="center">
+  A padronização do código foi feita utilizando ESLINT + PRETTIER com padronização a partir das regras pré-definidas pela AirBnb
+<p>
+  
+<p align="center">
+  o ESLINT é uma ferramenta que nos ajuda a identificar erros de padronização no código e o Prettier nos ajuda a corrigir eles de maneira simples em
+  conjunto com algumas configurações com o editor de texto.
+</p>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<p align="center">
+<img align="center" height="200" width="400" src="https://user-images.githubusercontent.com/54908803/69638933-6cef6f80-103a-11ea-8654-da50e2b081fa.png" />
+</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<hr>
 
-### `yarn eject`
+<p align="center">Axios</p>
+<p align="center">
+  Biblioteca utilizada para fazer as requisições HTTP a API criada no desafio anterior(Backend)
+</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/54908803/69832917-8990d080-120f-11ea-9a17-153ee4f529f0.png" />
+</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<hr>
+<p align="center">React Toastify</p>
+<p align="center">
+Utilizado para exibir as notificações para o cliente baseado nas respostas recebidas do Backend, tanto na criação de novas Tools, quanto na exclusão
+</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/54908803/69832941-a9c08f80-120f-11ea-843d-f8f179e3a7e1.png" />
+</p>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<hr>
 
-## Learn More
+<hr>
+<p align="center">YUP</p>
+<p align="center">
+ A utilização do Yup se dá na validação a partir de schemas que foram criados para utilizar em conjunto ao formulário
+</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<hr>
+<p align="center">Styled-Components</p>
+<p align="center">
+  Utilizado para criação de alguns componentes utilizado na aplicação, de forma que possamos definir as estilizações padrões com CSS junto a criação dos mesmos
+</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/54908803/69832978-f2784880-120f-11ea-91cf-23e261d39f61.jpeg" />
+</p>
