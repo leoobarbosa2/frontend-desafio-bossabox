@@ -2,7 +2,7 @@
 "Very Useful Tools to Remember"
 </h1>
 
-<p align="center">https://toolstorememberfront.herokuapp.com/emberfront.herokuapp.com/</p>
+<p align="center">https://toolstorememberfront.herokuapp.com/</p>
 
 <p align="center">O desafio de Frontend proposto pela BossaBox(https://bossabox.com/), foi de realizar a construção da página web da aplicação Very Useful Tools to Remember utilizando a própria API criada no desafio backend.
 </p>
